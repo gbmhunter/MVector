@@ -16,10 +16,7 @@
 //===============================================================================================//
 
 // System libraries
-#include <cstdint>		// int8_t, int32_t e.t.c
-#include <cstring>		// strlen(), strncpy()
-#include <cstdio>
-#include <iostream>		//!< @debug
+// none
 
 // User libraries
 // none
