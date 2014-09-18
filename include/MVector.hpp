@@ -98,6 +98,18 @@ namespace MbeddedNinja
 			//! @param		objToAppend		A pointer to the object you wish to append to the vector.
 			void Append(const ElementT & objToAppend)
 			{
+				// Special case when Append() is called and there are currently no objects
+				// in the vector, we have to be careful to not call delete[] on old
+				// pointer since memory
+				// is not currently allocated
+				if(this->size == 0)
+				{
+					this->elementsPtr = new ElementT[1];
+					memcpy(this->elementsPtr, &objToAppend, sizeof(ElementT));
+					this->size++;
+					return;
+				}
+
 				// Allocate memory for new vector with an additional element
 				ElementT * newElementsPtr = new ElementT[this->size + 1];
 
@@ -125,6 +137,16 @@ namespace MbeddedNinja
 
 				// Make sure index is not out-of-bounds
 				M_ASSERT(index < this->size);
+
+				// Special case when there is only one element left in the vector and
+				// Erase() is called, vector memory is simply deleted and pointer
+				// set to nullptr.
+				if(this->size == 1)
+				{
+					delete[] this->elementsPtr;
+					this->elementsPtr = nullptr;
+					return;
+				}
 
 				/*std::cout <<
 					"oldPtr[0] = '" << ((uint32_t *)this->elementsPtr)[0] <<

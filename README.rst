@@ -12,7 +12,7 @@ A microcontroller-friendly C++ vector object specifically designed for embedded 
 - Author: gbmhunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 - First Ever Commit: 2014-09-18
 - Last Modified: 2014-09-18
-- Version: v1.0.1.0
+- Version: v1.0.2.0
 - Company: mbedded.ninja
 - Project: MToolkit Module
 - Language: C++
@@ -64,6 +64,7 @@ Changelog
 ========= ========== ===================================================================================================
 Version   Date       Comment
 ========= ========== ===================================================================================================
+v1.0.2.0  2014-09-18 Fixed bug where calling MVector::Erase() with just one element attempts to allocate 0 bytes of memory, closes #2.
 v1.0.1.0  2014-09-18 Removed unneeded includes from 'MVector.cpp'.
 v1.0.0.0  2014-09-18 Initial commit, basic vector with Append() and Erase() implemented, and simple unit tests added, closes #1.
 ========= ========== ===================================================================================================
